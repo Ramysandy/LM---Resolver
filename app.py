@@ -105,27 +105,16 @@ with col_info:
 
 st.markdown(f"### {t('main_subtitle')}")
 
-# Display problem and solution context
 with st.expander("📌 Yellow Friday Challenge & AI Solution", expanded=False):
     col_problem, col_solution = st.columns(2)
-    
     with col_problem:
         st.markdown("**The Problem:**")
         st.markdown(t("main_problem"))
-    
     with col_solution:
         st.markdown("**Our AI Solution:**")
         st.markdown(t("main_solution"))
 
 st.markdown("---")
-
-# Check if Groq is configured
-if not st.session_state.groq_resolver:
-    st.info(
-        t("info_banner"),
-
-    )
-    st.stop()
 
 # ==============================================================================
 # INPUT SECTION
