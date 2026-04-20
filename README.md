@@ -9,11 +9,7 @@ A high-performance Streamlit application powered by Groq's LLMs for resolving un
 - **STAGE 2: Risk-Based Validation** - Assign certainty scores and identify when customer calls are needed
 - **STAGE 3: Geo-Synthesis** - Generate latitude/longitude coordinates based on landmark data
 
-### Noon Branding & UI
-- Custom CSS with Noon brand colors (White background, Primary Yellow #FFE000, Black text)
-- Responsive sidebar with system metrics and API configuration
-- Mobile-app style delivery cards with driver views
-- Real-time inference latency display
+
 
 ### Performance & Stress Testing
 - Yellow Friday Stress Test mode: 10 concurrent requests to validate system stability
