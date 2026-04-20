@@ -4,8 +4,9 @@ import streamlit as st
 import asyncio
 from typing import List
 from config import (
-    GROQ_API_KEY, SYSTEM_METRICS, SAMPLE_ADDRESSES, 
-    SYSTEM_METRICS_AR, SAMPLE_ADDRESSES_AR, TRANSLATIONS
+    GROQ_API_KEY, SYSTEM_METRICS, SAMPLE_ADDRESSES,
+    SYSTEM_METRICS_AR, SAMPLE_ADDRESSES_AR, TRANSLATIONS,
+    _get_groq_api_key,
 )
 from groq_client import GroqAddressResolver, StressTestRunner
 from address_resolver import AddressResolutionPipeline
@@ -78,13 +79,18 @@ with st.sidebar:
 # ==============================================================================
 # INITIALIZE GROQ RESOLVER (Background)
 # ==============================================================================
-# Auto-initialize from .env API key if not already done
-if st.session_state.groq_resolver is None and GROQ_API_KEY:
-    try:
-        st.session_state.groq_resolver = GroqAddressResolver(api_key=GROQ_API_KEY)
-        st.session_state.pipeline = AddressResolutionPipeline(st.session_state.groq_resolver)
-    except Exception as e:
-        st.error(f"Failed to initialize Groq client: {str(e)}")
+# Call _get_groq_api_key() at runtime so st.secrets is available on Streamlit Cloud
+if st.session_state.groq_resolver is None:
+    _runtime_key = _get_groq_api_key()
+    if _runtime_key:
+        try:
+            st.session_state.groq_resolver = GroqAddressResolver(api_key=_runtime_key)
+            st.session_state.pipeline = AddressResolutionPipeline(st.session_state.groq_resolver)
+        except Exception as e:
+            st.error(f"Failed to initialize Groq client: {str(e)}")
+    else:
+        st.error("GROQ_API_KEY not found. Add it to Streamlit Cloud Secrets or .env file.")
+        st.stop()
 
 
 # ==============================================================================
