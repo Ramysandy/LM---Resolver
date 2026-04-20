@@ -1,8 +1,8 @@
-# Noon Last-Mile Resolver: AI Office Prototype
+# Last-Mile Resolver
 
 A high-performance Streamlit application powered by Groq's LLMs for resolving unstructured delivery addresses in the Gulf Cooperation Council (GCC) region. Designed for Yellow Friday peak traffic management and FDA (Failed Delivery Attempts) prevention.
 
-## 🚀 Features
+##  Features
 
 ### Multi-Stage Agentic Reasoning Pipeline
 - **STAGE 1: NLP Entity Parsing** - Extract landmarks, neighborhoods, cities, and building details
@@ -92,10 +92,7 @@ noon/
 3. **Run Resolver** - Process through 3-stage pipeline
 4. **Review Results** - See structured JSON, driver view, geo-coordinates, and risk score
 
-### Quick Inject Examples
 
-- **Dubai Ambiguous**: "JVC behind the mosque, blue gate, near park"
-- **Riyadh Complex**: "Al Olaya, King Fahad Road, near the big pharmacy, 4th floor"
 
 ### Risk Scoring
 
@@ -217,9 +214,6 @@ For issues or questions:
 2. Verify your Groq API credentials
 3. Review the configuration in `config.py`
 
-## 📄 License
-
-Internal Noon Development Tool - Proprietary
 
 ---
 
